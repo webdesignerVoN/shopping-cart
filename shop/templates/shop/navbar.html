@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+
+        <div class="container">
+
+          <a class="navbar-brand" href="{% url 'shop:product_list' %}"> VoN's Shop </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainMenu">
+
+                {% if user.is_authenticated %} 
+
+            <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item" >
+
+                <a class="nav-link" dropdown-toggle href="#" id="userMenu" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> {{ user.username }} </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby='userMenu'>
+
+                                <a class="dropdown-item" href="#"> My Cabal </a>
+
+                                <a class="dropdown-item" href="#"> Change Password </a>
+                                
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="#"> Comot </a>
+
+                            </div>
+
+              </li>
+
+            </ul>
+
+                {% else %}
+
+                    <form class="form-inline ml-auto">
+
+                        <a href="#" class="btn btn-outline-light">Sign In</a>
+
+                        <a href="#" class="btn btn-info ml-2">Sign Up</a>
+
+                    </form>
+
+                {% endif %}
+
+          </div>
+
+        </div>
+
+      </nav>
