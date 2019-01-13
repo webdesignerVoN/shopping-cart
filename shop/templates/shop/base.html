@@ -13,31 +13,103 @@
 </head>
 
 <body>
- {% include 'shop/navbar.html' %}	
 
-<div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="{% url 'shop:product_list' %}"> VoN's Shop </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainMenu">
+
+            {% if user.is_authenticated %} 
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item" >
+
+                        <a class="nav-link" dropdown-toggle href="#" id="userMenu" data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> {{ user.username }} </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby='userMenu'>
+
+                                <a class="dropdown-item" href="#"> My Account </a>
+
+                                <a class="dropdown-item" href="#"> Change Password </a>
+                                
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="#"> Log Out </a>
+
+                            </div>
+
+                    </li>
+
+                </ul>
+
+            {% else %}
+
+                <form class="form-inline ml-auto">
+
+                    <a href="#" class="btn btn-outline-light">Sign In</a>
+
+                    <a href="#" class="btn btn-info ml-2">Sign Up</a>
+
+                </form>
+
+            {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+    
     <div class="row" style="margin-top: 6%">
+    
          <button class="btn btn-info pull-right">
+    
             {% with total_items=cart|length %}
+    
                 {% if cart|length > 0 %}
+    
                     My Shopping Order:
+    
                     <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
+    
                         {{ total_items }} item {{ total_items|pluralize }}, $. {{ cart.get_total_price }}
+    
                     </a>
+    
                     {% else %}
+    
                     Your cart is empty.
+    
                 {% endif %}
+    
             {% endwith %}
+    
          </button>
+    
     </div>
+
 </div>
 
 {% block content %}
 
 {% endblock %}
 
-<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
 
 </body>
 
